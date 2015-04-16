@@ -1,0 +1,16 @@
+@import "compass";
+@import "../_variables";
+
+.bm_collapse{
+  display: none;
+  &.in{
+    display: block;
+  }
+}
+
+.bm_collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: height 350ms ease;
+}

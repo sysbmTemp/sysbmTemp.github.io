@@ -1,0 +1,46 @@
+# Where things are
+paginate:     10
+
+# Handling Reading
+exclude: ["_posts/sample","category/sample"]
+
+# Filtering Content
+show_drafts:  null
+limit_posts:  0
+future:       true
+unpublished:  false
+
+#站点基础配置
+title: 生物博物馆讲座预约网-中山大学
+description: 中山大学生物博物馆讲座预约网，欢迎大家！
+keywords: 中山大学生物博物馆讲座预约网
+
+#作者信息
+author:
+  name: SamHwang
+  link: http://blog.ssyog.com/index.html
+
+# Outputting
+permalink: /lecture/:categories/:title.html
+paginate_path: /lectures/page/:num
+excerpt_separator: "<!--more-->"
+
+# Template Default
+defaults:
+  -
+    scope:
+      path: "category"
+      type: "pages"
+    values:
+      layout: "category"
+      needModal: false
+      currentNav: Lectures
+
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      needModal: true
+      cover: "default.png"

@@ -1,0 +1,39 @@
+---
+layout: default
+currentNav: Lectures
+needModal: false
+currentSort: false
+---
+
+<div class="bm_row clearFix" data-content="">
+    <div class="bm_col_lg_3 bm_col_xx_12">
+        {% include lectureSort.html %}
+    </div>
+    <div class="bm_col_lg_9 bm_col_xx_12">
+        <div class="bm_lecture_list">
+            {% for post in paginator.posts %}
+            <div class="bm_lecture_item bm_media">
+                <div class="bm_media_left">
+                    <img class="bm_lecture_cover bm_media_object" src="/static/imgs/posts/{{ post.cover }}" title="{{ post.title }}">
+                </div>
+                <section class="bm_media_body">
+                    <h2 class="bm_media_heading bm_lecture_title">{{ post.title }}</h2>
+                    <p><strong>主讲人：</strong>{{ post.author }}</p>
+                    <p><strong>简介：</strong>{{ post.excerpt }}</p>
+                    <p class="bm_lecture_more"><a href="{{ post.url }}">详细介绍</a></p>
+                </section>
+            </div>
+            {% endfor %}
+        </div>
+        <nav class="bm_pager_wrap">
+            <ul class="bm_pager">
+                {% if paginator.previous_page %}
+                <li><a href="{{ paginator.previous_page_path }}">上一页</a></li>
+                {% endif %}
+                {% if paginator.next_page %}
+                <li><a href="{{ paginator.next_page_path }}">下一页</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+
+<div class="bm_wrap clearFix" data-content="">
+    <header class="bm_header clearFix" data-content="">
+        <nav class="bm_nav">
+            <div class="bm_nav_container">
+                <div class="bm_nav_header">
+                    <button type="button" class="bm_nav_toggle collapsed" data-toggle="collapse" data-target="#bm_nav_list">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="bm_brand" href="{{ site.url }}/">
+                        <img src="/static/imgs/bm_brand.png" title="中山大学生物博物馆Logo" >
+                    </a>
+                </div>
+                <div class="bm_nav_collapse">
+                    <div class="bm_brand_text">
+                        <span class="bm_brand_textCn">中山大学生物博物馆</span><br/>
+                        <span class="bm_brand_textEn">The Museum of Biology, Sun Yat-sen University</span>
+                    </div>
+                    <ul class="bm_nav_list bm_collapse" id="bm_nav_list" aria-expanded="false">
+                        <li><a href="{{ site.url }}/" class='{% if page.currentNav == "Index" %} active {% endif %}'>首页</a> </li>
+                        <li><a href="{{ site.url }}/lectures/index.html" class='{% if page.currentNav == "Lectures" %} active {% endif %}'>讲座介绍</a> </li>
+                        <li><a href="{{ site.url }}/aboutus.html" class='{% if page.currentNav == "AboutUs" %} active {% endif %}' >联系我们</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="bm_main clearFix" data-content="">
+        <div class="bm_main_wrap clearFix" data-content="">
+            {{ content }}
+        </div>
+    </div>
+
+    <footer class="bm_footer clearFix" data-content="">
+        <p>通讯地址：广州市海珠区新港西路135号中山大学马文辉堂&nbsp;&nbsp;邮编：510275</p>
+        <p>Address：Ma Wenhui Hall, No.135, Xingang Xi Road, Guangzhou,510275, P. R. China</p>
+        <p>电话：020-84114063</p>
+        <p>Tel: +86-20-84114063</p>
+    </footer>
+</div>

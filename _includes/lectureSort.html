@@ -1,0 +1,9 @@
+<div class="bm_sort_wrap mb-20-xx">
+    <div class="bm_sort_list bm_list_group">
+        <h2 class="bm_list_item bm_sort_head">分类</h2>
+        <a class="bm_list_item {% if page.currentSort == false %} active {% endif %}" href="{{ site.url}}/lectures/index.html">全部分类</a>
+        <a class="bm_list_item {% if page.currentSort == "dongwu" %} active {% endif %}" href="{{ site.url }}/category/dongwu">动物</a>
+        <a class="bm_list_item {% if page.currentSort == "zhiwu" %} active {% endif %}" href="{{ site.url }}/category/zhiwu">植物</a>
+        <a class="bm_list_item {% if page.currentSort == "shengtai" %} active {% endif %}" href="{{ site.url }}/category/shengtai">生态</a>
+    </div>
+</div>
