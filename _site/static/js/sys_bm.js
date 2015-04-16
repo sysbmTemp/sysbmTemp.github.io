@@ -346,10 +346,10 @@
       nextIndicator && nextIndicator.addClass('active');
     }
 
-    var slideEvent = $.Event('carousel.slide.after', {relatedTarget: relatedTarget, direction: direction});
+    /*var slideEvent = $.Event('carousel.slide.after', {relatedTarget: relatedTarget, direction: direction});
     if($.support.transition && this.$element.hasClass('slide')){
       $next.addClass(type);
-      $next[0].offsetWidth // force reflow
+      $next[0].offsetWidth; // force reflow
       $active.addClass(direction);
       $next.addClass(direction);
       $active.one($.support.transition.end, function(e){
@@ -365,7 +365,11 @@
       $active.removeClass('active');
       $next.addClass('active');
       this.sliding = false;
-    }
+    }*/
+
+    $active.removeClass('active');
+    $next.addClass('active');
+    this.sliding = false;
 
     isCycling && this.cycle();
   };
