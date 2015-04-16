@@ -346,7 +346,7 @@
       nextIndicator && nextIndicator.addClass('active');
     }
 
-    /* var slideEvent = $.Event('carousel.slide.after', {relatedTarget: relatedTarget, direction: direction});
+    /*var slideEvent = $.Event('carousel.slide.after', {relatedTarget: relatedTarget, direction: direction});
     if($.support.transition && this.$element.hasClass('slide')){
       $next.addClass(type);
       $next[0].offsetWidth // force reflow
@@ -365,9 +365,9 @@
       $active.removeClass('active');
       $next.addClass('active');
       this.sliding = false;
-    } */
+    }*/
 	
-	$active.removeClass('active');
+	  $active.removeClass('active');
     $next.addClass('active');
     this.sliding = false;
 

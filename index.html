@@ -2,16 +2,11 @@
 layout: default
 currentNav: Index
 needModal: false
+title: "首页"
 ---
 
 <div class="bm_highlight_wrap">
-    <div id="bm_highlight" style="height: 275px;" class="bm_carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="bm_carousel_indicators">
-            <li class="active" data-target="#bm_highlight" data-slide-to="0"></li>
-            <li data-target="#bm_highlight" data-slide-to="1"></li>
-            <li data-target="#bm_highlight" data-slide-to="2"></li>
-        </ol>
+    <div id="bm_highlight" class="bm_carousel slide" data-ride="carousel">
 
         <!-- Wrapper for slides -->
         <div class="bm_carousel_inner" role="listbox">
@@ -25,6 +20,13 @@ needModal: false
                 <img src="{{ site.url }}/static/imgs/slider03.jpg" alt="">
             </div>
         </div>
+
+        <!-- Indicators -->
+        <ol class="bm_carousel_indicators">
+            <li class="active" data-target="#bm_highlight" data-slide-to="0"></li>
+            <li data-target="#bm_highlight" data-slide-to="1"></li>
+            <li data-target="#bm_highlight" data-slide-to="2"></li>
+        </ol>
 
         <!-- Controls -->
         <a class="left bm_carousel_control" href="#bm_highlight" role="button" data-slide="prev">
@@ -61,4 +63,21 @@ needModal: false
         <a class="bm_list_item" href="javascript:void(0);" title="中山大学生物科学院">中山大学生物科学院</a>
     </div>
 </div>
+<script type="text/javascript">
+    +function($){
+        var $bmHighlight = $('#bm_highlight');
+        var resetBmHighlight = function(){
+            var $img = $bmHighlight.find('.bm_carousel_inner .item.active img');
+            var toHeight = $img.height();
+            $bmHighlight.height(toHeight);
+            $bmHighlight.find('.bm_carousel_inner .item').height(toHeight);
+        };
+        $(document).ready(function(){
+            resetBmHighlight();
+        });
+        $(window).resize(function(){
+           resetBmHighlight();
+        });
+    }(jQuery)
+</script>
 
