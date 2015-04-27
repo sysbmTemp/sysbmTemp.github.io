@@ -713,7 +713,7 @@
     var that = this;
 
     // use jsonp
-    /*var url = that.config.api.jsonp + '?';
+    var url = that.config.api.jsonp + '?';
     url += 'short_name=' + this.config.short_name
     + '&'
     + 'secret=' + this.config.secret
@@ -724,7 +724,7 @@
     + '&'
     + 'author_name=' + this.config.author
     + '&'
-    + 'author_email=' + "funnyecho@foxmail.com";*/
+    + 'author_email=' + "funnyecho@foxmail.com";
 
     var ajaxData = {
       short_name: that.config.short_name,
@@ -735,14 +735,14 @@
       author_email: "funnyecho@foxmail.com"
     };
     $.ajax({
-      url: that.config.api.json,
+      url: url,
 
       // The name of the callback parameter, as specified by the YQL service
-      //jsonp: "callback",
-      type: that.config.method,
+      jsonp: "callback",
+      //type: that.config.method,
 
       // Tell jQuery we're expecting JSONP
-      dataType: "json",
+      dataType: "jsonp",
 
       // have problem in IE8-
       data: JSON.stringify(ajaxData),
