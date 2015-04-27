@@ -649,10 +649,10 @@
     var that = this;
 
     // TODO: can not send ajax to duoshuo, so just test the feedback function first
-    //if(!this.checkInput()) return false;
-    //this.sendAjax(this.collectInput());
+    if(!this.checkInput()) return false;
+    this.sendAjax(this.collectInput());
 
-    this.checkInput() && this.success.call(this);
+    // this.checkInput() && this.success.call(this);
     return false;
   };
 
@@ -749,9 +749,10 @@
 
       // Work with the response
       success: function(response){
+        console.log(response);
       },
       error: function(error){
-
+        console.log(error);
       }
     });
   };
