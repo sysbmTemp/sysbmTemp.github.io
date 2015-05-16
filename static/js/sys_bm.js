@@ -736,13 +736,13 @@
     };
     $.ajax({
       //url: url,
-      url: that.config.api.json,
+      url: that.config.api.jsonp,
 
-      // jsonp: "callback",
-      type: that.config.method,
+      //jsonp: "callback",
+      //type: that.config.method,
 
       // Tell jQuery we're expecting JSONP
-      //dataType: "jsonp",
+      dataType: "jsonp",
 
       // have problem in IE8-
       data: JSON.stringify(ajaxData),
