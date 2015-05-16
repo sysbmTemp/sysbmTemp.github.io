@@ -738,11 +738,11 @@
       url: url,
 
       // The name of the callback parameter, as specified by the YQL service
-      jsonp: "callback",
-      //type: that.config.method,
+      // jsonp: "callback",
+      type: that.config.method,
 
       // Tell jQuery we're expecting JSONP
-      dataType: "jsonp",
+      //dataType: "jsonp",
 
       // have problem in IE8-
       data: JSON.stringify(ajaxData),
