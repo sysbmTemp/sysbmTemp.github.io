@@ -735,9 +735,9 @@
       author_email: "funnyecho@foxmail.com"
     };
     $.ajax({
-      url: url,
+      //url: url,
+      url: that.config.api.json,
 
-      // The name of the callback parameter, as specified by the YQL service
       // jsonp: "callback",
       type: that.config.method,
 
