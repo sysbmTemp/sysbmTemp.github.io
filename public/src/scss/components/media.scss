@@ -1,0 +1,61 @@
+.bm_media {
+  // Proper spacing between instances of .media
+  margin-top: 15px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.bm_media,
+.bm_media_body {
+  zoom: 1;
+  overflow: hidden;
+}
+
+.bm_media_body {
+  width: 10000px;
+}
+
+.bm_media_object {
+  display: block;
+}
+
+.bm_media_right,
+.bm_media > .pull-right {
+  padding-left: 10px;
+}
+
+.bm_media_left,
+.bm_media > .pull-left {
+  padding-right: 10px;
+}
+
+.bm_media_left,
+.bm_media_right,
+.bm_media_body {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.bm_media_middle {
+  vertical-align: middle;
+}
+
+.bm_media_bottom {
+  vertical-align: bottom;
+}
+
+// Reset margins on headings for tighter default spacing
+.bm_media_heading {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+// Media list variation
+//
+// Undo default ul/ol styles
+.bm_media_list {
+  padding-left: 0;
+  list-style: none;
+}

@@ -1,4 +1,4 @@
-/*! sys_bm - v0.0.1 - 2015-04-15
+/*! sys_bm - v0.0.1 - 2015-05-17
  * https://github.com/SamHwang1990/sys_bm
  * Copyright (c) 2015 samhwang1990@gmail.com;
  * Licensed 
@@ -85,7 +85,7 @@
     })
   };
 
-  var scollHandler = function(){
+  var scrollHandler = function(){
     $('[data-appointment="true"]').each(function(){
       var $appointment = $(this);
       var options = $.extend({}, $appointment.data());
@@ -120,7 +120,7 @@
     })
   });
 
-  $(document).scroll(scollHandler);
+  $(document).scroll(scrollHandler);
   $(window).resize(resizeHandler);
 
 }(jQuery);
@@ -148,12 +148,12 @@
 
   appointmentHack.prototype.setup = function(){
     var that = this;
-    this.$rootElement = $('.bm_lecture_main');
     this.$caution = {
       $el: $('#bm_lecture_caution'),
       currentStep: 'caution'
     };
     this.$caution.$next = this.$caution.$el.find('a[rel="bm-modal-ie6"]');
+
     this.$form = {
       $el: $('#bm_lecture_appointment_form'),
       currentStep: 'form'
@@ -208,7 +208,7 @@
 
 
 +function($){
-  var $beforeAfter = function($el){
+  var appendBeforeAfter = function($el){
     if(document.querySelector || !$el.length) return;
 
     // TODO: 虽然是给IE6、7 的hack，不一定识别before、after 这两个元素哦，如果没效果，就修改下，使用div ，并修改css
@@ -226,7 +226,7 @@
     if(document.querySelector) return;
 
     $('.clearFix').each(function(){
-      $beforeAfter($(this));
+      appendBeforeAfter($(this));
     });
 
   });
@@ -346,10 +346,10 @@
       nextIndicator && nextIndicator.addClass('active');
     }
 
-    /*var slideEvent = $.Event('carousel.slide.after', {relatedTarget: relatedTarget, direction: direction});
+    var slideEvent = $.Event('carousel.slide.after', {relatedTarget: relatedTarget, direction: direction});
     if($.support.transition && this.$element.hasClass('slide')){
       $next.addClass(type);
-      $next[0].offsetWidth // force reflow
+      $next[0].offsetWidth; // force reflow
       $active.addClass(direction);
       $next.addClass(direction);
       $active.one($.support.transition.end, function(e){
@@ -365,11 +365,7 @@
       $active.removeClass('active');
       $next.addClass('active');
       this.sliding = false;
-    }*/
-	
-	  $active.removeClass('active');
-    $next.addClass('active');
-    this.sliding = false;
+    }
 
     isCycling && this.cycle();
   };
@@ -652,7 +648,7 @@
     if(!this.checkInput()) return false;
     this.sendAjax(this.collectInput());
 
-    // this.checkInput() && this.success.call(this);
+    //this.checkInput() && this.success.call(this);
     return false;
   };
 
@@ -713,7 +709,7 @@
     var that = this;
 
     // use jsonp
-    var url = that.config.api.jsonp + '?';
+    /*var url = that.config.api.jsonp + '?';
     url += 'short_name=' + this.config.short_name
     + '&'
     + 'secret=' + this.config.secret
@@ -724,7 +720,7 @@
     + '&'
     + 'author_name=' + this.config.author
     + '&'
-    + 'author_email=' + "funnyecho@foxmail.com";
+    + 'author_email=' + "funnyecho@foxmail.com";*/
 
     var ajaxData = {
       short_name: that.config.short_name,
@@ -735,14 +731,14 @@
       author_email: "funnyecho@foxmail.com"
     };
     $.ajax({
-      //url: url,
-      url: that.config.api.jsonp,
+      url: that.config.api.json,
 
-      //jsonp: "callback",
-      //type: that.config.method,
+      // The name of the callback parameter, as specified by the YQL service
+      // jsonp: "callback",
+      type: that.config.method,
 
       // Tell jQuery we're expecting JSONP
-      dataType: "jsonp",
+      dataType: "json",
 
       // have problem in IE8-
       data: JSON.stringify(ajaxData),
@@ -826,7 +822,7 @@
   // ============================================================
 
   function transitionEnd() {
-    var el = document.createElement('bm')
+    var el = document.createElement('bm');
 
     var transEndEventNames = {
       WebkitTransition : 'webkitTransitionEnd',
@@ -841,7 +837,7 @@
       }
     }
 
-    return false // explicit for ie8 (  ._.)
+    return false; // explicit for ie8 (  ._.)
   }
 
   // http://blog.alexmaccaw.com/css-transitions
@@ -850,12 +846,12 @@
     var $el = this;
     $(this).one($.support.transition.end, function () { called = true });
     var callback = function () { if (!called) $($el).trigger($.support.transition.end) };
-    setTimeout(callback, duration)
-    return this
+    setTimeout(callback, duration);
+    return this;
   }
 
   $(function () {
-    $.support.transition = transitionEnd()
+    $.support.transition = transitionEnd();
 
     if (!$.support.transition) return;
   })

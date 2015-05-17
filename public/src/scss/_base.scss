@@ -1,0 +1,104 @@
+@import '_reset';
+@import "_variables";
+
+
+html{
+  font-size: 125%; // 20px % 16px, tht minimum font-size is 12px in browser
+}
+
+body{
+  width: 100%;
+  height: auto;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-family: 'Helvetica Neue', Helvetica, 'Microsoft Yahei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', Arial, Tahoma, sans-serif;
+}
+
+.bm_wrap{
+  width: 100%;
+  height: auto;
+}
+
+[role=button]{
+  cursor: pointer;
+}
+
+
+// response content
+.img_responsive{
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+// margin and padding base
+
+.mt-20-lg{
+  margin-top: 20px;
+  margin-top: 1rem;
+}
+.mb-20-lg{
+  margin-bottom: 20px;
+  margin-bottom: 1rem;
+}
+
+@media #{$media} and (max-width: $screen-md-max) {
+  .mt-20-md{
+    margin-top: 20px;
+    margin-top: 1rem;
+  }
+  .mb-20-md{
+    margin-bottom: 20px;
+    margin-bottom: 1rem;
+  }
+}
+
+@media #{$media} and (max-width: $screen-sm-max) {
+  .mt-20-sm{
+    margin-top: 20px;
+    margin-top: 1rem;
+  }
+  .mb-20-sm{
+    margin-bottom: 20px;
+    margin-bottom: 1rem;
+  }
+}
+
+@media #{$media} and (max-width: $screen-xs-max) {
+  .mt-20-xs{
+    margin-top: 20px;
+    margin-top: 1rem;
+  }
+  .mb-20-xs{
+    margin-bottom: 20px;
+    margin-bottom: 1rem;
+  }
+}
+
+@media #{$media} and (max-width: $screen-xx-max) {
+  .mt-20-xx{
+    margin-top: 20px;
+    margin-top: 1rem;
+  }
+  .mb-20-xx{
+    margin-bottom: 20px;
+    margin-bottom: 1rem;
+  }
+}
+
+

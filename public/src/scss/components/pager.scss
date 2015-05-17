@@ -1,0 +1,45 @@
+@import "../_variables";
+
+.bm_pager_wrap{
+
+}
+
+.bm_pager{
+  padding: 0;
+  margin: 14px 0;
+  list-style: none;
+  text-align: center;
+  li{
+    display: inline;
+    a,
+    span{
+      display: inline-block;
+      zoom: 1;
+      *display: inline;
+
+      padding: 5px 14px;
+      background-color: #{$bgWhite};
+      color: #{$fontGreen};
+      font-size: 14px;
+      border: 1px solid #cccccc;
+      border-radius: 15px;
+      text-decoration: none;
+    }
+    a:hover,
+    a:active{
+      color: #{$fontWhite};
+      background-color: lighten( $bgGreen, 10% );
+    }
+  }
+  .disabled {
+    > a,
+    > a:hover,
+    > a:focus,
+    > span {
+      color: #ccc;
+      background-color: #{$bgWhite};
+      cursor: not-allowed;
+    }
+  }
+}
+
