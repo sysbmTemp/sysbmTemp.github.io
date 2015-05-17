@@ -291,8 +291,17 @@ $fontLectureP: #777;
   }
 }
 
+#bm_lecture_appointment_maike{
+  display: none;
+  padding: 0;
+  // adjustment for maike
+  .f_component{
+    padding: 0px 30px 0px 30px
+  }
+}
+
 // modify the jquery.modal plugin
-#bm_lecture_caution, #bm_lecture_appointment_form, #bm_lecture_appointment_feedback{
+#bm_lecture_caution, #bm_lecture_appointment_form, #bm_lecture_appointment_feedback, #bm_lecture_appointment_maike{
   @media #{$media} and (max-width: $screen-xx-max){
     margin-left: 5%;
     width: 90% !important;

@@ -154,11 +154,16 @@
     };
     this.$caution.$next = this.$caution.$el.find('a[rel="bm-modal-ie6"]');
 
-    this.$form = {
+    /*this.$form = {
       $el: $('#bm_lecture_appointment_form'),
       currentStep: 'form'
     };
-    this.$form.$prev = this.$form.$el.find('a[rel="bm-modal-ie6"]');
+    this.$form.$prev = this.$form.$el.find('a[rel="bm-modal-ie6"]');*/
+
+    this.$form = {
+      $el: $('#bm_lecture_appointment_maike'),
+      currentStep: 'form'
+    };
 
     that.$caution.$next.bind('click.bm.modal.ie6', function(e){
       e.preventDefault();
@@ -167,13 +172,13 @@
       return false;
     });
 
-    that.$form.$prev.bind('click.bm.modal.ie6', function(e){
+    /*that.$form.$prev.bind('click.bm.modal.ie6', function(e){
       e.preventDefault();
 
       that.to(that.currentStep, that.$caution.currentStep);
 
       return false;
-    });
+    });*/
 
     this.to(this.currentStep, this.$caution.currentStep);
 
@@ -593,6 +598,29 @@
 
   })
 
+
+}(jQuery);
+
+/**
+ * Created by sam on 15/5/17.
+ */
+
++function($){
+
+  var $maikeWrap = $('#bm_lecture_appointment_maike');
+  var $maikeIframe = $maikeWrap.find('iframe');
+  var maikeFormSrc = 'http://www.mikecrm.com/f.php?t=Wy66WZ';
+
+  $(document).ready(function(){
+    $maikeIframe.attr('src', maikeFormSrc);
+    $maikeIframe.load( function() {
+      /*$maikeIframe.contents().find('head')
+        .append($("<style type='text/css'>  .f_component{padding-top: 0; padding-bottom: 0;}  </style>"));
+      //$('iframe').contents().find("head")*/
+      var innerDoc = window.frames['maike_appointment'].document.body.innerHTML;
+      console.log(innerDoc);
+    });
+  })
 
 }(jQuery);
 

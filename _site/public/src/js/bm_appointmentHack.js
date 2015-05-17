@@ -27,11 +27,16 @@
     };
     this.$caution.$next = this.$caution.$el.find('a[rel="bm-modal-ie6"]');
 
-    this.$form = {
+    /*this.$form = {
       $el: $('#bm_lecture_appointment_form'),
       currentStep: 'form'
     };
-    this.$form.$prev = this.$form.$el.find('a[rel="bm-modal-ie6"]');
+    this.$form.$prev = this.$form.$el.find('a[rel="bm-modal-ie6"]');*/
+
+    this.$form = {
+      $el: $('#bm_lecture_appointment_maike'),
+      currentStep: 'form'
+    };
 
     that.$caution.$next.bind('click.bm.modal.ie6', function(e){
       e.preventDefault();
@@ -40,13 +45,13 @@
       return false;
     });
 
-    that.$form.$prev.bind('click.bm.modal.ie6', function(e){
+    /*that.$form.$prev.bind('click.bm.modal.ie6', function(e){
       e.preventDefault();
 
       that.to(that.currentStep, that.$caution.currentStep);
 
       return false;
-    });
+    });*/
 
     this.to(this.currentStep, this.$caution.currentStep);
 
