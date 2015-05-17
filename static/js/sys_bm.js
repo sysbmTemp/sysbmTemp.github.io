@@ -731,20 +731,16 @@
       author_email: "funnyecho@foxmail.com"
     };
     $.ajax({
-      url: that.config.api.json,
+      url: that.config.api.jsonp,
       crossDomain: true,
-      headers:{
-        'referer': 'sysbmtemp.github.io'
-      },
 
       // The name of the callback parameter, as specified by the YQL service
       // jsonp: "callback",
-      type: that.config.method,
+      type: 'GET',
 
       // Tell jQuery we're expecting JSONP
-      dataType: "JSON",
+      dataType: "jsonp",
       contentType: "application/json; charset=utf-8",
-      async:false,
 
       // have problem in IE8-
       data: JSON.stringify(ajaxData),
