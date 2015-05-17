@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="keyword" content="中山大学生物博物馆讲座预约网">
 <meta name="description" content="中山大学生物博物馆讲座预约网，欢迎大家！">
-    <title>讲座列表：植物|生物博物馆讲座预约网-中山大学</title>
+    <title>预约讲座|生物博物馆讲座预约网-中山大学</title>
     <link rel="icon" type="image/ico" href="/static/favicon.png">
 <link rel="stylesheet" href="/static/css/style.css">
 <link rel="stylesheet" href="/static/css/jquery.modal.css">
@@ -59,8 +59,8 @@
                     </div>
                     <ul class="bm_nav_list bm_collapse" id="bm_nav_list" aria-expanded="false">
                         <li><a href="/" class=''>首页</a> </li>
-                        <li><a href="/lectures/index.html" class=' active '>讲座介绍</a> </li>
-                        <li><a href="/appointment.html" class=''>预约讲座</a> </li>
+                        <li><a href="/lectures/index.html" class=''>讲座介绍</a> </li>
+                        <li><a href="/appointment.html" class=' active '>预约讲座</a> </li>
                         <li><a href="/funnyqa.html" class=''>趣题库</a> </li>
                         <li><a href="/aboutus.html" class='' >联系我们</a> </li>
                     </ul>
@@ -71,32 +71,31 @@
 
     <div class="bm_main clearFix" data-content="">
         <div class="bm_main_wrap clearFix" data-content="">
-            <div class="bm_row clearFix" data-content="">
-    <div class="bm_col_lg_3 bm_col_xx_12">
-        <div class="bm_sort_wrap mb-20-xx">
-    <div class="bm_sort_list bm_list_group">
-        <h2 class="bm_list_item bm_sort_head">分类</h2>
-        <a class="bm_list_item " href="/lectures/index.html">全部分类</a>
-        <a class="bm_list_item " href="/category/dongwu">动物</a>
-        <a class="bm_list_item  active " href="/category/zhiwu">植物</a>
-        <a class="bm_list_item " href="/category/shengtai">生态</a>
-    </div>
-</div>
-    </div>
-    <div class="bm_col_lg_9 bm_col_xx_12">
-        <div class="bm_lecture_list">
-            
-            <div class="bm_block_head">该分类下暂时没有内容！</div>
-            
-            
-        </div>
-        <!--<nav class="bm_pager_wrap">
-            <ul class="bm_pager">
-                
-                
-            </ul>
-        </nav>-->
-    </div>
+            <div class="bm_appoint_wrap clearFix" data-content="">
+    <header class="bm_appoint_header">
+        <h1>预约讲座</h1>
+    </header>
+    <article class="bm_appoint_content">
+        <section id="bm_caution">
+            <h2>请先阅读注意事项</h2>
+            <p> 1. 预约方应以学校、社区等单位的团体形式预约。</p>
+            <p> 2. 预约方至少提前两周提交预约，以便双方协调时间，具体时间以沟通结果为准。</p>
+            <p> 3. 讲座属科普公益传播讲座，非盈利性。</p>
+            <p> 4. 讲座场所设施及现场多媒体、麦克风等设备由预约方提供。</p>
+            <p> 5. 讲座举办地点在广州市内，往返车费由我馆承担；讲座举办地点在广州市外，由预约方承担。</p>
+            <p> 6. 主讲人及助教的往返交通费或派车接送。</p>
+            <p> 7. 预约方提供讲座期间安全保障。</p>
+            <p> 8. 出勤主讲人及助教保险由我馆购买，讲座听众等如需购买保险，由预约方负责。</p>
+            <p> 9. 如因突发情况导致讲座不能如期进行，由双方协商解决。</p>
+            <a class="bm_btn bm_btn_success bm_btn_sm" role="ReadedCaution" href="javascript:void(0);">已阅读完毕</a>
+        </section>
+        <section id="bm_maike">
+            <p class="loading">正在加载预约信息表格，请稍后&nbsp;<img src="./static/imgs/loading.gif" width="20" height="20" title="预约表单正在加载，请稍后！"> </p>
+            <iframe name="maike_appointment" height="750" allowTransparency="true" style="width:100%;border:none;overflow:auto;" frameborder="0">
+
+            </iframe>
+        </section>
+    </article>
 </div>
         </div>
     </div>

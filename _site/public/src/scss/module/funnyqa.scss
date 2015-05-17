@@ -1,0 +1,66 @@
+@import "../_variables";
+
+.bm_funnyQa_wrap{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.bm_funnyQa_header{
+  margin-bottom: 30px;
+  margin-bottom: 1.5rem;
+  h1{
+    padding: 20px 0 14px 0;
+    padding: 1rem 0 .7rem 0;
+    font-size: 28px;
+    color: #{$fontGray};
+    text-align: center;
+    letter-spacing: 2px;
+  }
+  &:after{
+    content: '';
+    display: block;
+    height: 1px;
+    width: 3rem;
+    margin: 0 auto;
+    background-color: lighten($bgGreen, 20%);
+  }
+}
+
+.bm_funnyQa_content{
+  padding: 20px;
+  background-color: #{$bgWhite};
+  border: 1px solid #{$bdGray};
+  border-radius: 5px;
+}
+
+.qa_group{
+  margin-bottom: 14px;
+  margin-bottom: .7rem;
+  font-size: 14px;
+  font-size: .7rem;
+  line-height: 1.5;
+  .qa_que_title{
+    margin-bottom: 4px;
+    font-size: 16px;
+    font-size: .8rem;
+  }
+  .qa_ans{
+    color: #{$fontSuccess};
+  }
+}
+
+@media #{$media} and (max-width: $screen-sm-max) {
+  .bm_funnyQa_wrap{
+    width: 100%;
+  }
+
+  .bm_funnyQa_header{
+    margin-bottom: 20px;
+    margin-bottom: 1rem;
+    h1{
+      padding: 12px 0  12px 0;
+      font-size: 26px;
+      letter-spacing: 1px;
+    }
+  }
+}

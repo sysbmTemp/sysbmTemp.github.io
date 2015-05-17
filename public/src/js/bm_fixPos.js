@@ -5,10 +5,10 @@
 +function($){
   'use strict';
 
-  var Appointment = function(element, options){
+  var FixPos = function(element, options){
     this.$element = $(element);
-    this.options = $.extend({}, Appointment.DEFAULT, options);
-    this.$appointment = this.$element.find('.bm_appointment_trigger').eq(0);
+    this.options = $.extend({}, FixPos.DEFAULT, options);
+    this.$target = this.$element.find('[data-fixPosTarget="true"]').eq(0);
 
     this.offsetRight = null;
     this.offsetLeft = null;
@@ -17,14 +17,14 @@
     if(this.options.fix) this.initOffset().setOffset();
   };
 
-  Appointment.VERSION = '0.0.1';
+  FixPos.VERSION = '0.0.1';
 
-  Appointment.DEFAULT = {
+  FixPos.DEFAULT = {
     direction: 'right',
     fix: true
   };
 
-  Appointment.prototype.initOffset = function(){
+  FixPos.prototype.initOffset = function(){
     this.options.direction == 'right'
       ? (this.offsetRight = $(window).width() - (this.$element.offset().left + this.$element.outerWidth()))
       : (this.offsetLeft = this.$element.offset().left);
@@ -32,15 +32,15 @@
     return this;
   };
 
-  Appointment.prototype.setOffset = function(){
+  FixPos.prototype.setOffset = function(){
     if($(document).scrollTop() > this.offsetTop){
-      this.$appointment.css({
+      this.$target.css({
         'position':'fixed',
         'right':(this.options.direction == 'right' ? this.offsetRight : 'auto'),
         'left':(this.options.direction == 'right' ? 'auto' : this.offsetLeft),
         'top':'10px'})
     }else{
-      this.$appointment.css({
+      this.$target.css({
         'position':'absolute',
         'right':(this.options.direction == 'right' ? 0 : 'auto'),
         'left':(this.options.direction == 'right' ? 'auto' : 0),
@@ -54,7 +54,7 @@
       var data = $this.data('bm.appointment');
       var options = $.extend({}, $this.data(), typeof option == 'object' && option);
       if(!data && !options.fix) return false;
-      if(!data) $this.data('bm.appointment', (data = new Appointment(this, options)));
+      if(!data) $this.data('bm.appointment', (data = new FixPos(this, options)));
 
       if(data.options.fix){
         if(options.action == 'resize'){
@@ -68,37 +68,37 @@
   };
 
   var scrollHandler = function(){
-    $('[data-appointment="true"]').each(function(){
-      var $appointment = $(this);
-      var options = $.extend({}, $appointment.data());
+    $('[data-fixPos="true"]').each(function(){
+      var $target = $(this);
+      var options = $.extend({}, $target.data());
       options.action = 'scroll';
 
-      Plugin.call($appointment, options);
+      Plugin.call($target, options);
     })
   };
 
   var resizeHandler = function(){
-    $('[data-appointment="true"]').each(function(){
-      var $appointment = $(this);
-      var options = $.extend({}, $appointment.data());
+    $('[data-fixPos="true"]').each(function(){
+      var $target = $(this);
+      var options = $.extend({}, $target.data());
       options.action = 'resize';
 
-      Plugin.call($appointment, options);
+      Plugin.call($target, options);
     })
   };
 
-  var old = $.fn.appointment;
-  $.fn.appointment = Plugin;
-  $.fn.appointment.Constructor = Appointment;
-  $.fn.appointment.notConflict = function(){
-    $.fn.appointment = old;
+  var old = $.fn.bmFixPos;
+  $.fn.bmFixPos = Plugin;
+  $.fn.bmFixPos.Constructor = FixPos;
+  $.fn.bmFixPos.notConflict = function(){
+    $.fn.bmFixPos = old;
     return;
   }
 
   $(window).on('load', function(){
-    $('[data-appointment="true"]').each(function(){
-      var $appointment = $(this);
-      Plugin.call($appointment, $appointment.data());
+    $('[data-fixPos="true"]').each(function(){
+      var $wrap = $(this);
+      Plugin.call($wrap, $wrap.data());
     })
   });
 

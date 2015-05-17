@@ -17,195 +17,6 @@
 }(jQuery);
 
 /**
- * Created by sam on 15-4-11.
- */
-
-+function($){
-  'use strict';
-
-  var Appointment = function(element, options){
-    this.$element = $(element);
-    this.options = $.extend({}, Appointment.DEFAULT, options);
-    this.$appointment = this.$element.find('.bm_appointment_trigger').eq(0);
-
-    this.offsetRight = null;
-    this.offsetLeft = null;
-    this.offsetTop = null;
-
-    if(this.options.fix) this.initOffset().setOffset();
-  };
-
-  Appointment.VERSION = '0.0.1';
-
-  Appointment.DEFAULT = {
-    direction: 'right',
-    fix: true
-  };
-
-  Appointment.prototype.initOffset = function(){
-    this.options.direction == 'right'
-      ? (this.offsetRight = $(window).width() - (this.$element.offset().left + this.$element.outerWidth()))
-      : (this.offsetLeft = this.$element.offset().left);
-    this.offsetTop = this.$element.offset().top;
-    return this;
-  };
-
-  Appointment.prototype.setOffset = function(){
-    if($(document).scrollTop() > this.offsetTop){
-      this.$appointment.css({
-        'position':'fixed',
-        'right':(this.options.direction == 'right' ? this.offsetRight : 'auto'),
-        'left':(this.options.direction == 'right' ? 'auto' : this.offsetLeft),
-        'top':'10px'})
-    }else{
-      this.$appointment.css({
-        'position':'absolute',
-        'right':(this.options.direction == 'right' ? 0 : 'auto'),
-        'left':(this.options.direction == 'right' ? 'auto' : 0),
-        'top':'10px'})
-    }
-  };
-
-  var Plugin = function(option){
-    return this.each(function(){
-      var $this = $(this);
-      var data = $this.data('bm.appointment');
-      var options = $.extend({}, $this.data(), typeof option == 'object' && option);
-      if(!data && !options.fix) return false;
-      if(!data) $this.data('bm.appointment', (data = new Appointment(this, options)));
-
-      if(data.options.fix){
-        if(options.action == 'resize'){
-          data.initOffset().setOffset();
-        }
-        else if(options.action == 'scroll'){
-          data.setOffset();
-        }
-      }
-    })
-  };
-
-  var scrollHandler = function(){
-    $('[data-appointment="true"]').each(function(){
-      var $appointment = $(this);
-      var options = $.extend({}, $appointment.data());
-      options.action = 'scroll';
-
-      Plugin.call($appointment, options);
-    })
-  };
-
-  var resizeHandler = function(){
-    $('[data-appointment="true"]').each(function(){
-      var $appointment = $(this);
-      var options = $.extend({}, $appointment.data());
-      options.action = 'resize';
-
-      Plugin.call($appointment, options);
-    })
-  };
-
-  var old = $.fn.appointment;
-  $.fn.appointment = Plugin;
-  $.fn.appointment.Constructor = Appointment;
-  $.fn.appointment.notConflict = function(){
-    $.fn.appointment = old;
-    return;
-  }
-
-  $(window).on('load', function(){
-    $('[data-appointment="true"]').each(function(){
-      var $appointment = $(this);
-      Plugin.call($appointment, $appointment.data());
-    })
-  });
-
-  $(document).scroll(scrollHandler);
-  $(window).resize(resizeHandler);
-
-}(jQuery);
-
-/**
- * Created by sam on 15-4-14.
- */
-
-+function($){
-  'use strict';
-
-  var appointmentHack = function(){
-    this.$rootElement = null;
-    this.$caution = null;
-    this.$form = null;
-    this.isIE6 = false;
-    this.currentStep = '';
-  };
-
-  appointmentHack.init = function(){
-    var isIE6 = navigator.userAgent.indexOf("MSIE 6.0") !== -1 ;
-    return isIE6 ? new appointmentHack() : false;
-    //return new appointmentHack();
-  };
-
-  appointmentHack.prototype.setup = function(){
-    var that = this;
-    this.$caution = {
-      $el: $('#bm_lecture_caution'),
-      currentStep: 'caution'
-    };
-    this.$caution.$next = this.$caution.$el.find('a[rel="bm-modal-ie6"]');
-
-    /*this.$form = {
-      $el: $('#bm_lecture_appointment_form'),
-      currentStep: 'form'
-    };
-    this.$form.$prev = this.$form.$el.find('a[rel="bm-modal-ie6"]');*/
-
-    this.$form = {
-      $el: $('#bm_lecture_appointment_maike'),
-      currentStep: 'form'
-    };
-
-    that.$caution.$next.bind('click.bm.modal.ie6', function(e){
-      e.preventDefault();
-      that.to(that.currentStep, that.$form.currentStep);
-
-      return false;
-    });
-
-    /*that.$form.$prev.bind('click.bm.modal.ie6', function(e){
-      e.preventDefault();
-
-      that.to(that.currentStep, that.$caution.currentStep);
-
-      return false;
-    });*/
-
-    this.to(this.currentStep, this.$caution.currentStep);
-
-  };
-
-  appointmentHack.prototype.to = function(fromStep, toStep){
-    if(fromStep) this.hide(fromStep);
-    if(toStep || (toStep='Form')) this.show(toStep);
-    this.currentStep = toStep;
-  };
-
-  appointmentHack.prototype.hide = function(step){
-    return this['$' + step].$el.hide();
-  };
-
-  appointmentHack.prototype.show = function(step){
-    return this['$' + step].$el.show();
-  };
-
-  $(document).ready(function(){
-    var aH = appointmentHack.init();
-    if(!aH) return false;
-    aH.setup();
-  });
-
-}(jQuery);
-/**
  * Created by sam on 15-4-13.
  *
  * a plugin to hack :after and :before element in ie8-
@@ -602,244 +413,153 @@
 }(jQuery);
 
 /**
+ * Created by sam on 15-4-11.
+ */
+
++function($){
+  'use strict';
+
+  var FixPos = function(element, options){
+    this.$element = $(element);
+    this.options = $.extend({}, FixPos.DEFAULT, options);
+    this.$target = this.$element.find('[data-fixPosTarget="true"]').eq(0);
+
+    this.offsetRight = null;
+    this.offsetLeft = null;
+    this.offsetTop = null;
+
+    if(this.options.fix) this.initOffset().setOffset();
+  };
+
+  FixPos.VERSION = '0.0.1';
+
+  FixPos.DEFAULT = {
+    direction: 'right',
+    fix: true
+  };
+
+  FixPos.prototype.initOffset = function(){
+    this.options.direction == 'right'
+      ? (this.offsetRight = $(window).width() - (this.$element.offset().left + this.$element.outerWidth()))
+      : (this.offsetLeft = this.$element.offset().left);
+    this.offsetTop = this.$element.offset().top;
+    return this;
+  };
+
+  FixPos.prototype.setOffset = function(){
+    if($(document).scrollTop() > this.offsetTop){
+      this.$target.css({
+        'position':'fixed',
+        'right':(this.options.direction == 'right' ? this.offsetRight : 'auto'),
+        'left':(this.options.direction == 'right' ? 'auto' : this.offsetLeft),
+        'top':'10px'})
+    }else{
+      this.$target.css({
+        'position':'absolute',
+        'right':(this.options.direction == 'right' ? 0 : 'auto'),
+        'left':(this.options.direction == 'right' ? 'auto' : 0),
+        'top':'10px'})
+    }
+  };
+
+  var Plugin = function(option){
+    return this.each(function(){
+      var $this = $(this);
+      var data = $this.data('bm.appointment');
+      var options = $.extend({}, $this.data(), typeof option == 'object' && option);
+      if(!data && !options.fix) return false;
+      if(!data) $this.data('bm.appointment', (data = new FixPos(this, options)));
+
+      if(data.options.fix){
+        if(options.action == 'resize'){
+          data.initOffset().setOffset();
+        }
+        else if(options.action == 'scroll'){
+          data.setOffset();
+        }
+      }
+    })
+  };
+
+  var scrollHandler = function(){
+    $('[data-fixPos="true"]').each(function(){
+      var $target = $(this);
+      var options = $.extend({}, $target.data());
+      options.action = 'scroll';
+
+      Plugin.call($target, options);
+    })
+  };
+
+  var resizeHandler = function(){
+    $('[data-fixPos="true"]').each(function(){
+      var $target = $(this);
+      var options = $.extend({}, $target.data());
+      options.action = 'resize';
+
+      Plugin.call($target, options);
+    })
+  };
+
+  var old = $.fn.bmFixPos;
+  $.fn.bmFixPos = Plugin;
+  $.fn.bmFixPos.Constructor = FixPos;
+  $.fn.bmFixPos.notConflict = function(){
+    $.fn.bmFixPos = old;
+    return;
+  }
+
+  $(window).on('load', function(){
+    $('[data-fixPos="true"]').each(function(){
+      var $wrap = $(this);
+      Plugin.call($wrap, $wrap.data());
+    })
+  });
+
+  $(document).scroll(scrollHandler);
+  $(window).resize(resizeHandler);
+
+}(jQuery);
+/**
+ * Created by sam on 15-4-14.
+ */
+
++function($){
+  'use strict';
+  $(document).ready(function(){
+    var $caution = $('#bm_caution');
+    var $maike = $('#bm_maike');
+
+    $caution.find('[role="ReadedCaution"]').bind('click', function(e){
+      $caution.hide('fast', function(){
+        $maike.show('fast');
+      });
+    });
+  });
+
+}(jQuery);
+/**
  * Created by sam on 15/5/17.
  */
 
 +function($){
 
-  var $maikeWrap = $('#bm_lecture_appointment_maike');
+  var $maikeWrap = $('#bm_maike');
+  var $maikeLoading = $maikeWrap.find('p.loading');
   var $maikeIframe = $maikeWrap.find('iframe');
   var maikeFormSrc = 'http://www.mikecrm.com/f.php?t=Wy66WZ';
 
   $(document).ready(function(){
     $maikeIframe.attr('src', maikeFormSrc);
-    $maikeIframe.load( function() {
-      /*$maikeIframe.contents().find('head')
-        .append($("<style type='text/css'>  .f_component{padding-top: 0; padding-bottom: 0;}  </style>"));
-      //$('iframe').contents().find("head")*/
-      var innerDoc = window.frames['maike_appointment'].document.body.innerHTML;
-      console.log(innerDoc);
-    });
+    $maikeIframe.load(function(){
+      $maikeLoading.hide('fast', function(){
+        $maikeIframe.show('fast');
+      });
+    })
   })
 
 }(jQuery);
 
-/**
- * Created by sam on 15-4-12.
- */
-
-
-+function($){
-  'use strict';
-
-  var bmDuoshuo = function(formEl, config){
-    this.$form = $(formEl);
-    this.config = $.extend({}, bmDuoshuo.CONFIG, typeof config == 'object' && config);
-    this.intervalArray = [];
-    this.config.successCode = 0;
-    this.config.short_name = 'sysbmtest';
-    this.config.secret = '35fd76467164cdf595a9c788d86cb377';
-    this.config.threadKey = this.$form.find('.bm_form_title').eq(0).text();
-    this.config.author = this.$form.find('.bm_form_author').eq(0).text();
-    this.config.url = this.$form.find('.bm_form_url').eq(0).text();
-    this.config.isIE6 = navigator.userAgent.indexOf("MSIE 6.0") !== -1 ;
-
-    this.$feedbackEle = $('#bm_lecture_appointment_feedback');
-    this.config.feedback = {
-      successClass: 'success',
-      errorClass: 'wrong',
-      closeCountdown: 5 // second
-    };
-
-    this.$form.on('submit.bm.duoshuo', $.proxy(this.submit, this));
-  };
-
-  bmDuoshuo.CONFIG = {
-    api: {
-      json: 'http://api.duoshuo.com/posts/create.json',
-      jsonp: 'http://api.duoshuo.com/posts/create.jsonp'
-    },
-    shortName: null,
-    secret: null,
-    message: null,
-    method: 'POST',
-    successHandler: null,
-    errorHandler: null,
-    wrongInputClass: 'bm_form_errorInput'
-  };
-
-  bmDuoshuo.prototype.submit = function(e){
-    e.preventDefault();
-    var that = this;
-
-    // TODO: can not send ajax to duoshuo, so just test the feedback function first
-    if(!this.checkInput()) return false;
-    this.sendAjax(this.collectInput());
-
-    //this.checkInput() && this.success.call(this);
-    return false;
-  };
-
-  bmDuoshuo.prototype.clearInterval = function(){
-    if(!this.intervalArray.length) return;
-    var intervalTmp = this.intervalArray.pop();
-    clearInterval(intervalTmp);
-    return this.clearInterval.call(this);
-  };
-
-  bmDuoshuo.prototype.checkInput = function(){
-    var that = this;
-    var wrongFlag = false;
-    var checkResult = false;
-    var wrongMsg = '内容不能为空！';
-    this.clearInterval();
-    this.$form.find('.bm_form_group').each(function(){
-      var $label = $(this).find('label');
-      var $input = $(this).find('input.bm_form_control');
-      if(!$input.val()){
-        !wrongFlag && (wrongFlag = true);
-        that.wrongInput($input, wrongMsg);
-      }
-    });
-    !wrongFlag && (checkResult = true);
-    return checkResult;
-  };
-
-  bmDuoshuo.prototype.wrongInput = function($wrongElement, wrongMessage){
-    var that = this;
-    $wrongElement.addClass(this.config.wrongInputClass);
-    $wrongElement.attr('placeholder', wrongMessage);
-    var interval = setInterval(function(){
-      $wrongElement.removeClass(that.config.wrongInputClass);
-    }, 2000);
-    this.intervalArray.push(interval);
-    return;
-  };
-
-  bmDuoshuo.prototype.collectInput = function(){
-    var that = this;
-    var message = '';
-
-    message += "讲座名称：" + this.config.threadKey + '\n';
-    message += "主讲人：" + this.config.author + '\n';
-    message += "文章链接：" + this.config.url + '\n';
-
-    this.$form.find('.bm_form_group').each(function(){
-      var $label = $(this).find('label');
-      var $input = $(this).find('input.bm_form_control');
-      var msgTmp = $label.text() + '：' + $input.val() + '\n';
-      message += msgTmp;
-    });
-    return message;
-  };
-
-  bmDuoshuo.prototype.sendAjax = function(message){
-    var that = this;
-
-    // use jsonp
-    /*var url = that.config.api.jsonp + '?';
-    url += 'short_name=' + this.config.short_name
-    + '&'
-    + 'secret=' + this.config.secret
-    + '&'
-    + 'message=' + message
-    + '&'
-    + 'thread_key=' + this.config.threadKey
-    + '&'
-    + 'author_name=' + this.config.author
-    + '&'
-    + 'author_email=' + "funnyecho@foxmail.com";*/
-
-    var ajaxData = {
-      'short_name': that.config.short_name,
-      'secret': that.config.secret,
-      'message': message,
-      'thread_key': that.config.threadKey,
-      'author_name': that.config.author,
-      'author_email': "funnyecho@foxmail.com"
-    };
-    $.ajax({
-      url: that.config.api.jsonp,
-      crossDomain: true,
-
-      // The name of the callback parameter, as specified by the YQL service
-      // jsonp: "callback",
-      type: 'GET',
-
-      // Tell jQuery we're expecting JSONP
-      dataType: "jsonp",
-      contentType: "application/json; charset=utf-8",
-
-      // have problem in IE8-
-      data: ajaxData,
-
-      // Work with the response
-      success: function(response){
-        console.log(response);
-      },
-      error: function(error){
-        console.log(error);
-      }
-    });
-  };
-
-  bmDuoshuo.prototype.success = function(response){
-    //console.log(response);
-    var message = "预约成功，我方会尽快安排，并与您沟通联系，感谢您的预约！";
-    this.$feedbackEle.find('.fb_message').addClass(this.config.feedback.successClass).text(message);
-    this.handlerFbModal();
-  };
-
-  bmDuoshuo.prototype.error = function(response){
-    //console.log(response);
-    var message = "预约失败，请稍后再次尝试，或者联系管理员。感谢您的支持！";
-    this.$feedbackEle.find('.fb_message').addClass(this.config.feedback.errorClass).text(message);
-    this.handlerFbModal();
-  };
-
-  bmDuoshuo.prototype.handlerFbModal = function(fbType){
-    var $fbCloseBtn = this.$feedbackEle.find('.fb_closeBtn');
-    var $fbCloseCountdown = this.$feedbackEle.find('.fb_closeCountdown');
-    var fbCloseCountdown = this.config.feedback.closeCountdown;
-
-    // init the $fbCloseCountdown text
-    $fbCloseCountdown.text(fbCloseCountdown);
-
-    // 需要引入jquery.modal 控件
-    if(!this.config.isIE6 && $.modal){
-      this.$feedbackEle.modal();
-      var closeInterval = setInterval(function(){
-        if(fbCloseCountdown <= 1){
-          clearInterval(closeInterval);
-          $fbCloseBtn.trigger('click.modal');
-        }
-        $fbCloseCountdown.text(--fbCloseCountdown);
-      }, 1000);
-    }else{
-      alert(this.$feedbackEle.find('.fb_message').text());
-    }
-  };
-
-  var initModule = function(config){
-    return this.each(function(){
-      var $this = $(this);
-      var data = $this.data('bm.duoshuo');
-      var configs = $.extend({}, $this.data(), typeof config == 'object' && config);
-
-      if(!data) $this.data('bm.duoshuo', (data = new bmDuoshuo(this, configs)));
-    });
-  };
-
-  $(window).on('load', function(){
-    $('form[data-duosho="true"]').each(function(){
-      var $element = $(this);
-      var data = $element.data();
-      initModule.call($element, data);
-    });
-  });
-
-
-}(jQuery);
 /**
  * Created by sam on 15-3-30.
  */

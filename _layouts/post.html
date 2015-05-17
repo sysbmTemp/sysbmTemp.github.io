@@ -18,68 +18,13 @@ layout: default
                 <header class="bm_lecture_title">
                     <h1>{{ page.title }}</h1>
                 </header>
-                <section class="bm_lecture_content" data-appointment="true" data-fix="true" data-direction="left">
+                <section class="bm_lecture_content" data-fixPos="true" data-fix="true" data-direction="left">
                     <p><img src="/static/imgs/posts/{{ page.cover }}"> </p>
                     <h2>主讲人：{{ page.author }}</h2>
                     <h2>详细信息：</h2>
                     {{content}}
-                    <a href="#bm_lecture_caution" rel="bm-modal:open" class="bm_btn bm_appointment_trigger bm_ie6_hide">我要预约</a>
-                </section>
-                <div id="bm_lecture_caution" data-modal="true">
-                    <section>
-                        <h2><span class="bm_ie6_show">预约讲座</span> 请先阅读注意事项</h2>
-                        <p> 1. 预约方应以学校、社区等单位的团体形式预约。</p>
-                        <p> 2. 预约方至少提前两周提交预约，以便双方协调时间，具体时间以沟通结果为准。</p>
-                        <p> 3. 讲座属科普公益传播讲座，非盈利性。</p>
-                        <p> 4. 讲座场所设施及现场多媒体、麦克风等设备由预约方提供。</p>
-                        <p> 5. 讲座举办地点在广州市内，往返车费由我馆承担；讲座举办地点在广州市外，由预约方承担。</p>
-                        <p> 6. 主讲人及助教的往返交通费或派车接送。</p>
-                        <p> 7. 预约方提供讲座期间安全保障。</p>
-                        <p> 8. 出勤主讲人及助教保险由我馆购买，讲座听众等如需购买保险，由预约方负责。</p>
-                        <p> 9. 如因突发情况导致讲座不能如期进行，由双方协商解决。</p>
-                        <a class="bm_btn bm_btn_success bm_btn_sm bm_ie6_show_inline" href="#bm_lecture_appointment_maike" rel="bm-modal-ie6">已阅读完毕</a>
-                        <a class="bm_btn bm_btn_success bm_btn_sm bm_ie6_hide" href="#bm_lecture_appointment_maike" rel="bm-modal:open">已阅读完毕</a>
-                    </section>
-                </div>
-                <section id="bm_lecture_appointment_form" data-modal="true">
-                    <form class="bm_form" data-duosho="true">
-                        <div class="bm_form_header">
-                            <p class="sr-only bm_form_title">{{ page.title }}</p>
-                            <p class="sr-only bm_form_author">{{ page.author }}</p>
-                            <p class="sr-only bm_form_url">{{ site.url }}/{{ page.url }}</p>
-                            <p>请填写预约信息</p>
-                        </div>
-                        <div class="bm_form_group">
-                            <label for="bm_lecture_appointment_appointUnit">预约单位或个人名称</label>
-                            <input type="text" class="bm_form_control" id="bm_lecture_appointment_appointUnit" placeholder="必填">
-                        </div>
-                        <div class="bm_form_group">
-                            <label for="bm_lecture_appointment_appointContract">联系人及联系方式</label>
-                            <input type="text" class="bm_form_control" id="bm_lecture_appointment_appointContract" placeholder="必填">
-                        </div>
-                        <div class="bm_form_group">
-                            <label for="bm_lecture_appointment_appointAudience">讲座观众以及年龄段</label>
-                            <input type="text" class="bm_form_control" id="bm_lecture_appointment_appointAudience" placeholder="必填">
-                        </div>
-                        <div class="bm_form_group">
-                            <label for="bm_lecture_appointment_appointDate">预约讲座日期</label>
-                            <input type="text" class="bm_form_control" id="bm_lecture_appointment_appointDate" placeholder="必填">
-                        </div>
-                        <button class="bm_btn bm_btn_success bm_btn_sm" type="submit" class="bm_lecture_appointment_appointSubmit">Submit</button>
-                        &emsp;
-                        <a class="bm_btn bm_btn_info bm_btn_sm bm_ie6_show_inline" href="#bm_lecture_caution" rel="bm-modal-ie6">返回注意事项</a>
-                        <a class="bm_btn bm_btn_info bm_btn_sm bm_ie6_hide" href="#bm_lecture_caution" rel="bm-modal:open">返回注意事项</a>
-                    </form>
-                </section>
-                <section id="bm_lecture_appointment_feedback" data-modal="true">
-                    <p class="fb_message"></p>
-                    <p><small>本窗口将会在&nbsp;<span class="fb_closeCountdown">5</span>&nbsp;秒后关闭。</small></p>
-                    <a class="fb_closeBtn bm_btn" href="javascript:void(0);" rel="modal:close">关闭预约反馈窗口</a>
-                </section>
-                <section id="bm_lecture_appointment_maike" data-lectureTitle="{{ page.title }}" data-lectureSpeaker="{{ page.author}}">
-                    <iframe name="maike_appointment" height="600" allowTransparency="true" style="width:100%;border:none;overflow:auto;" frameborder="0">
-
-                    </iframe>
+                    <a href="{{site.url}}/appointment.html" target="_blank" class="bm_btn bm_appointment_trigger bm_ie6_hide" data-fixPosTarget="true">我要预约</a>
+                    <a href="{{site.url}}/appointment.html" target="_blank" class="bm_btn bm_appointment_trigger">我要预约</a>
                 </section>
             </article>
             <nav class="bm_pager_wrap">
