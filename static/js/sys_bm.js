@@ -724,7 +724,7 @@
     + '&'
     + 'author_name=' + this.config.author
     + '&'
-    + 'author_email=' + "funnyecho@foxmail.com";
+    + 'author_email=' + 'funnyecho@foxmail.com';
 
     var ajaxData = {
       short_name: that.config.short_name,
@@ -735,17 +735,17 @@
       author_email: "funnyecho@foxmail.com"
     };
     $.ajax({
-      //url: url,
-      url: that.config.api.jsonp,
+      url: url,
+      //url: that.config.api.jsonp,
 
       //jsonp: "callback",
-      //type: that.config.method,
+      type: that.config.method,
 
       // Tell jQuery we're expecting JSONP
-      dataType: "jsonp",
+      // dataType: "jsonp",
 
       // have problem in IE8-
-      data: JSON.stringify(ajaxData),
+      // data: JSON.stringify(ajaxData),
 
       // Work with the response
       success: function(response){
