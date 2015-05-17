@@ -628,8 +628,8 @@
 
   bmDuoshuo.CONFIG = {
     api: {
-      json: 'http://sysbmtest.duoshuo.com/posts/create.json',
-      jsonp: 'http://sysbmtest.duoshuo.com/posts/create.jsonp'
+      json: 'http://api.duoshuo.com/posts/create.json',
+      jsonp: 'http://api.duoshuo.com/posts/create.jsonp'
     },
     shortName: null,
     secret: null,
