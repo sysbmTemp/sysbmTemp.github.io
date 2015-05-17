@@ -140,7 +140,7 @@
       type: that.config.method,
 
       // Tell jQuery we're expecting JSONP
-      dataType: "json",
+      dataType: "JSONP",
 
       // have problem in IE8-
       data: JSON.stringify(ajaxData),
