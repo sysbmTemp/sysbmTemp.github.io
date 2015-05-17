@@ -133,14 +133,14 @@
       author_email: "funnyecho@foxmail.com"
     };
     $.ajax({
-      url: that.config.api.jsonp,
+      url: that.config.api.json,
 
       // The name of the callback parameter, as specified by the YQL service
       // jsonp: "callback",
       type: that.config.method,
 
       // Tell jQuery we're expecting JSONP
-      dataType: "JSONP",
+      dataType: "JSON",
 
       // have problem in IE8-
       data: JSON.stringify(ajaxData),
