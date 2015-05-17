@@ -723,12 +723,12 @@
     + 'author_email=' + "funnyecho@foxmail.com";*/
 
     var ajaxData = {
-      short_name: that.config.short_name,
-      secret: that.config.secret,
-      message: message,
-      thread_key: that.config.threadKey,
-      author_name: that.config.author,
-      author_email: "funnyecho@foxmail.com"
+      'short_name': that.config.short_name,
+      'secret': that.config.secret,
+      'message': message,
+      'thread_key': that.config.threadKey,
+      'author_name': that.config.author,
+      'author_email': "funnyecho@foxmail.com"
     };
     $.ajax({
       url: that.config.api.jsonp,
@@ -743,7 +743,7 @@
       contentType: "application/json; charset=utf-8",
 
       // have problem in IE8-
-      data: JSON.stringify(ajaxData),
+      data: ajaxData,
 
       // Work with the response
       success: function(response){
