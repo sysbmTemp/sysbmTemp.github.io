@@ -19,8 +19,9 @@ layout: default
                     <h1>{{ page.title }}</h1>
                 </header>
                 <section class="bm_lecture_content" data-fixPos="true" data-fix="true" data-direction="left">
-                    <p><img src="/static/imgs/posts/{{ page.cover }}"> </p>
+                    <p><img src="/static/imgs/posts/{{ page.category }}/{{ page.cover }}"> </p>
                     <h2>主讲人：{{ page.author }}</h2>
+                    <h2>推荐年级：{{ page.audience }}</h2>
                     <h2>详细信息：</h2>
                     {{content}}
                     <a href="{{site.url}}/appointment.html" target="_blank" class="bm_btn bm_appointment_trigger bm_ie6_hide" data-fixPosTarget="true">我要预约</a>

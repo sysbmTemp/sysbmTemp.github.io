@@ -8,17 +8,18 @@ layout: default
     </div>
     <div class="bm_col_lg_9 bm_col_xx_12">
         <div class="bm_lecture_list">
-            {% if site.categories.[page.CATEGORY] == null %}
+            {% if site.categories.[page.category] == null %}
             <div class="bm_block_head">该分类下暂时没有内容！</div>
             {% endif %}
-            {% for post in site.categories.[page.CATEGORY] %}
+            {% for post in site.categories.[page.category] %}
             <div class="bm_lecture_item bm_media">
                 <div class="bm_media_left">
-                    <img class="bm_lecture_cover bm_media_object" src="/static/imgs/posts/{{ post.cover }}" title="{{ post.title }}">
+                    <img class="bm_lecture_cover bm_media_object" src="/static/imgs/posts/{{ post.category }}/{{ post.cover }}" title="{{ post.title }}">
                 </div>
                 <section class="bm_media_body">
                     <h2 class="bm_media_heading bm_lecture_title">{{ post.title }}</h2>
                     <p><strong>主讲人：</strong>{{ post.author }}</p>
+                    <p><strong>推荐年级：</strong>{{ post.audience }}</p>
                     <p><strong>简介：</strong>{{ post.excerpt }}</p>
                     <p class="bm_lecture_more"><a href="{{ post.url }}">详细介绍</a></p>
                 </section>
