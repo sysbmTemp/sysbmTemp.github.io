@@ -4,7 +4,7 @@ category: dongwu
 categoryCn: 动物
 author: 毛晓萌
 audience: 小学-初中
-cover: "endangered-wildlife-lzt.jpg"
+cover: "default.jpg"
 description: "当我们自豪地说，我们征服了地球，你可曾想过，有许多已经永远离开我们动物，想要保护他们很简单，让我们从了解他们开始"
 ---
 
